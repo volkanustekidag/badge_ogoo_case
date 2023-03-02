@@ -1,16 +1,21 @@
-# badge_case
+# BADGE CASE OGOO DIGITAL
 
-A new Flutter project.
 
-## Getting Started
+## Tech and Libraries
 
-This project is a starting point for a Flutter application.
+* MVVM Architecture
+* [flutter_svg](https://pub.dev/packages/flutter_svg) <br>
+* [carousel_slider](https://pub.dev/packages/carousel_slider) <br>
+* [flutter_rating_bar](https://pub.dev/packages/flutter_rating_bar) <br>
+* [get](https://pub.dev/packages/get) <br>
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Anroid Screenshot
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+https://user-images.githubusercontent.com/56761000/222527404-badae039-a26c-47c7-a1f2-f2c87ccfdb8b.mov 
+
+## IOS Screenshots
+
+https://user-images.githubusercontent.com/56761000/222528323-a312a48d-d93f-4345-a6a5-e466cc4c9df6.mp4
+
+
