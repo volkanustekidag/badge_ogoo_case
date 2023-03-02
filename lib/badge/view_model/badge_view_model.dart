@@ -25,6 +25,7 @@ class BadgeViewModel extends GetxController {
     );
   }
 
+  //Liste genişletilmek istendikçe 10'ar 10'ar listeyi arttırıyor.
   Future<void> loadPaginatioList() async {
     paginatioList.value = paginatioList.value +
         List.generate(
@@ -34,15 +35,18 @@ class BadgeViewModel extends GetxController {
             (i) => badgeListItem.value[i + paginatioList.value.length]);
   }
 
+  //Servisler aracılığıyla list-data.json dosyasındaki datayı alıypr.
   Future<void> getAllBadgeDataList() async {
     badgeListItem.value = await BadgeService().getBadgeListData();
     allBadgeCount.value = badgeListItem.value.length;
   }
 
+  //Servisler aracılığıyla badge-data.json dosyasındaki datayı alıypr.
   Future<void> getAllBadges() async {
     badges.value = await BadgeService().getBadges();
   }
 
+  //Bagde listesini kullanarak tüm dataları kontrol edip badge count ve avaragerating hesaplanıyor.
   Future<void> countAvarageRatingAndCount() async {
     double allBadgeTotalRating = 0;
     for (int i = 0; i < badges.value.length; i++) {
@@ -55,11 +59,14 @@ class BadgeViewModel extends GetxController {
           totalRating += double.parse(badgeData.praiseRating);
         }
       }
+      //Eğer badge listede hiç yoksa listeden çıkarılıyor ve sliderda görünmüyor.
+      if (badges.value[i].count == 0) badges.value.remove(i);
       allBadgeTotalRating += totalRating;
       badges.value[i].avarageRating = totalRating / badges.value[i].count;
     }
     allAvarageRating.value = allBadgeTotalRating / allBadgeCount.value;
   }
 
+  //Slider sayfalarının değişimini kontrol ediyor.
   onPageChanged(index) => sliderCurrentIndex.value = index;
 }

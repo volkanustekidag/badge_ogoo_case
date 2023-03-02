@@ -19,6 +19,8 @@ class _BadgeManagerState extends State<BadgeManager> {
   @override
   void initState() {
     super.initState();
+
+    //Aşağı scroll işlemini kontrol ederek listeye yeni veriler ekliyor.(Lazy loading)
     scrollController.addListener(() {
       if (scrollController.position.pixels >=
           scrollController.position.maxScrollExtent) {

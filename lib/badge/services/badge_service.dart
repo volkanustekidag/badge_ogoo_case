@@ -4,6 +4,7 @@ import 'package:badge_case/badge/models/badge_list_item.dart';
 import 'package:badge_case/badge/services/local_service.dart';
 
 class BadgeService {
+  //badge-data.json dosyasını mapleyip listelemek için kullanılıyor.
   Future<List<dynamic>> getBadges() async {
     try {
       final data =
@@ -13,6 +14,7 @@ class BadgeService {
     return throw Exception();
   }
 
+  //list-data.json dosyasını mapleyip listelemek için kullanılıyor.
   Future<List<dynamic>> getBadgeListData() async {
     try {
       final data =
