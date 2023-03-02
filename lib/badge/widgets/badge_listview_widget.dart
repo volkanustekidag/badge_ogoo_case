@@ -32,6 +32,7 @@ class _BagdeListViewWidgetState extends State<BagdeListViewWidget> {
           ? ListView.builder(
               itemCount: widget.badgeListItem!.length,
               shrinkWrap: true,
+              primary: false,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) => BadgeListItemWidget(
                     bagdeListItem: widget.badgeListItem![index],
