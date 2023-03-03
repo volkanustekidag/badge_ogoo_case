@@ -14,44 +14,50 @@ class BadgeManager extends StatefulWidget {
 
 class _BadgeManagerState extends State<BadgeManager> {
   final badgeManagerViewModel = Get.put(BadgeViewModel());
-  ScrollController scrollController = ScrollController();
+  // ScrollController scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
 
-    //Aşağı scroll işlemini kontrol ederek listeye yeni veriler ekliyor.(Lazy loading)
-    scrollController.addListener(() {
-      if (scrollController.position.pixels >=
-          scrollController.position.maxScrollExtent) {
-        badgeManagerViewModel.loadPaginatioList();
-      }
-    });
+    /*
+   * Gerekli performans iyileştirmesi  widgetlarla iyileştirildiği için
+   * pagination ve lazy loading işlemine gerek kalmadı.
+   */
+    // //Aşağı scroll işlemini kontrol ederek listeye yeni veriler ekliyor.(Lazy loading)
+    // scrollController.addListener(() {
+    //   if (scrollController.position.pixels >=
+    //       scrollController.position.maxScrollExtent) {
+    //     // badgeManagerViewModel.loadPaginatioList();
+    //     print(badgeManagerViewModel.paginatioList.length);
+    //   }
+    // });
   }
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> bodyWidgets = [
+      Obx(
+        () => CardSlider(
+          badges: badgeManagerViewModel.badges.value,
+          allAvarageRating: badgeManagerViewModel.allAvarageRating.value,
+          allBadgeCount: badgeManagerViewModel.allBadgeCount.value,
+        ),
+      ),
+      const SizedBox(height: 17),
+      Obx(
+        () => BagdeListViewWidget(
+          badgeListItem: badgeManagerViewModel.badgeListItem.value,
+        ),
+      ),
+    ];
+
     return Scaffold(
       appBar: const AppBarWidget(),
-      body: SingleChildScrollView(
-        controller: scrollController,
-        child: Column(
-          children: [
-            Obx(
-              () => CardSlider(
-                badges: badgeManagerViewModel.badges.value,
-                allAvarageRating: badgeManagerViewModel.allAvarageRating.value,
-                allBadgeCount: badgeManagerViewModel.allBadgeCount.value,
-              ),
-            ),
-            const SizedBox(height: 17),
-            Obx(
-              () => BagdeListViewWidget(
-                badgeListItem: badgeManagerViewModel.paginatioList.value,
-              ),
-            ),
-          ],
-        ),
+      body: ListView.builder(
+        // controller: scrollController,
+        itemCount: bodyWidgets.length,
+        itemBuilder: (context, index) => bodyWidgets[index],
       ),
     );
   }
