@@ -19,21 +19,22 @@ class BadgeViewModel extends GetxController {
         countAvarageRatingAndCount()
             .then((value) => isLoadingbadgesSlider.value = true);
       });
-    }).then(
-      (value) => loadPaginatioList()
-          .then((value) => isLoadingListListview.value = true),
-    );
+    }).then((value) => isLoadingListListview.value = true);
   }
 
+  /*
+   * Gerekli performans iyileştirmesi  widgetlarla iyileştirildiği için
+   * pagination ve lazy loading işlemine gerek kalmadı.
+   */
   //Liste genişletilmek istendikçe 10'ar 10'ar listeyi arttırıyor.
-  Future<void> loadPaginatioList() async {
-    paginatioList.value = paginatioList.value +
-        List.generate(
-            badgeListItem.value.length - paginatioList.value.length >= 10
-                ? 10
-                : badgeListItem.value.length - paginatioList.value.length,
-            (i) => badgeListItem.value[i + paginatioList.value.length]);
-  }
+  // Future<void> loadPaginatioList() async {
+  //   paginatioList.value = paginatioList.value +
+  //       List.generate(
+  //           badgeListItem.value.length - paginatioList.value.length >= 10
+  //               ? 10
+  //               : badgeListItem.value.length - paginatioList.value.length,
+  //           (i) => badgeListItem.value[i + paginatioList.value.length]);
+  // }
 
   //Servisler aracılığıyla list-data.json dosyasındaki datayı alıypr.
   Future<void> getAllBadgeDataList() async {
