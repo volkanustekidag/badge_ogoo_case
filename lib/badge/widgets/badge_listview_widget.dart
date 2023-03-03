@@ -29,14 +29,13 @@ class _BagdeListViewWidgetState extends State<BagdeListViewWidget> {
   Widget build(BuildContext context) {
     return Obx(
       () => badgeManagerViewModel.isLoadingListListview.value
-          ? ListView.builder(
-              itemCount: widget.badgeListItem!.length,
-              shrinkWrap: true,
-              primary: false,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) => BadgeListItemWidget(
-                    bagdeListItem: widget.badgeListItem![index],
-                  ))
+          ? Column(
+              children: List.generate(
+                  widget.badgeListItem!.length,
+                  (index) => BadgeListItemWidget(
+                        bagdeListItem: widget.badgeListItem![index],
+                      )),
+            )
           : const LoadingWidget(),
     );
   }
